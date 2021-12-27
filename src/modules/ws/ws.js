@@ -1,12 +1,13 @@
 /* eslint-disable max-len */
 /* eslint-disable camelcase */
 
+// eslint-disable-next-line import/no-cycle
 import { messenger } from '../../app';
 
 /* eslint-disable class-methods-use-this */
 export default class Ws {
   constructor(pop_Up, appState) {
-    this.appState = appState;
+    this.appState = appState; // B
     this.pop_Up = pop_Up;
     if (!this.ws) {
       this.ws = new WebSocket('ws://localhost:8080');
@@ -38,9 +39,8 @@ export default class Ws {
     if (action === 'signIn' && this.login) {
       if (response.status === 'ok') {
         this.pop_Up.closepopUp();
-        this.pop_Up.openMessenger(response.activeUsers, this.login);
-        this.appState.saveStateActiveUsers(response.activeUsers, this.login);
-        // this.ws.close();
+        this.pop_Up.openMessenger(response.activeUsers, this.login, response.allMessages);
+        // this.appState.saveStateActiveUsers(response.activeUsers, this.login); // B
       } else {
         document.querySelector('.form_inputNickName').value = '';
         // eslint-disable-next-line no-alert
@@ -53,16 +53,17 @@ export default class Ws {
     }
   }
 
+  // eslint-disable-next-line no-unused-vars
   handlerCloseWS(e) {
-    this.message = JSON.stringify({
-      action: 'deleteUser',
-      login: this.login,
-    });
-    this.sendMessage(this.message);
-    console.log('Соединенеие закрыто', e);
+    // this.message = JSON.stringify({
+    //   action: 'deleteUser',
+    //   login: this.login,
+    // });
+    // this.sendMessage(this.message);
   }
 
   handlerErrorWS(e) {
+    // eslint-disable-next-line no-console
     console.log('Произошла ошибка', e);
   }
 }

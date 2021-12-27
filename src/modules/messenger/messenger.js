@@ -13,11 +13,17 @@ export default class Messenger {
 
   async init() {
     this.popUp.renderingPopUpStart();
-    this.activeUsers = sessionStorage.getItem('activeUsers');
-    this.login = sessionStorage.getItem('login');
-    if (this.login) {
-      this.popUp.openMessenger(JSON.parse(this.activeUsers), JSON.parse(this.login));
-    }
+    // this.ws.sendMessage(JSON.stringify({
+    //   action: 'getAllUsers',
+    // }));
+    // this.ws.sendMessage(JSON.stringify({
+    //   action: 'getAllMessage',
+    // }));
+    // this.activeUsers = sessionStorage.getItem('activeUsers'); // B
+    // this.login = sessionStorage.getItem('login');// B
+    // if (this.login) {
+    //   this.popUp.openMessenger(JSON.parse(this.activeUsers), JSON.parse(this.login));
+    // }
   }
 
   signIn(event) {
@@ -48,7 +54,7 @@ export default class Messenger {
   renderingMessage(mesageText, dateMessage, login) {
     let userName = null;
     // eslint-disable-next-line no-unused-expressions
-    login === this.login ? userName = 'You' : userName = JSON.parse(login);
+    login === this.login ? userName = 'You' : userName = login;
     const messageHTML = `
     <div class="message">
       <div class="messageData">${userName}, ${dateMessage}</div>

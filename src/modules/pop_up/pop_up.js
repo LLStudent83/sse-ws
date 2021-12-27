@@ -57,12 +57,12 @@ export default class PopUp {
     this.container.innerHTML = this.getHTMLMessenger();
   }
 
-  openMessenger(activeUsers, login) {
+  openMessenger(activeUsers, userName, messages = []) {
     this.renderingMessenger();
     this.usersList = document.querySelector('.usersList');
     activeUsers.forEach((user) => {
       let html = null;
-      if (user !== login) {
+      if (user !== userName) {
         html = `<li class="user">${user}</li>`;
       } else {
         html = '<li class="user userYou" >You</li>';
@@ -74,6 +74,11 @@ export default class PopUp {
       e.preventDefault();
       messenger.createMessage(e);
     });
+    if (messages.length === 0) return;
+    for (const item of messages) {
+      const { login, message, dateMessage } = item;
+      messenger.renderingMessage(message, dateMessage, login);
+    }
   }
 
   onClickPopUp(event) {
