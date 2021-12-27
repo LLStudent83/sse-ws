@@ -6,8 +6,11 @@ import PopUp from './modules/pop_up/pop_up';
 import Messenger from './modules/messenger/messenger';
 import Ws from './modules/ws/ws';
 // eslint-disable-next-line import/no-cycle
+import AppState from './modules/appState/appState';
 
+const appState = new AppState();
 const pop_up = new PopUp('container');
-const messenger = new Messenger(pop_up);
-const ws = new Ws();
+const ws = new Ws(pop_up, appState);
+const messenger = new Messenger(pop_up, ws);
+
 export { pop_up, messenger, ws };

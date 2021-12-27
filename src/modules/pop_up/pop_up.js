@@ -46,7 +46,7 @@ export default class PopUp {
         <div class ="messages"></div>
         <footer class="form_footer">
         <textarea class="messageInput" type="text" placeholder="Введите здесь своё сообщение" name='messageText'></textarea>
-          <button type="button" class="buttonSendMess button">Отправить</button>
+          <button type="submit" class="buttonSendMess button">Отправить</button>
         </footer>
       </form>
     `;
@@ -64,12 +64,15 @@ export default class PopUp {
       let html = null;
       if (user !== login) {
         html = `<li class="user">${user}</li>`;
-        // this.usersList.innerHTML += html;
       } else {
         html = '<li class="user userYou" >You</li>';
-        // this.usersList.innerHTML += html;
       }
       this.usersList.innerHTML += html;
+    });
+    this.form = document.querySelector('.form');
+    this.form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      messenger.createMessage(e);
     });
   }
 
@@ -79,6 +82,8 @@ export default class PopUp {
   }
 
   closepopUp() {
-    document.querySelector('.popup').remove();
+    if (document.querySelector('.popup')) {
+      document.querySelector('.popup').remove();
+    }
   }
 }
