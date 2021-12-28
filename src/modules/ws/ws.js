@@ -10,7 +10,7 @@ export default class Ws {
     this.appState = appState; // B
     this.pop_Up = pop_Up;
     if (!this.ws) {
-      this.ws = new WebSocket('ws://localhost:8080');
+      this.ws = new WebSocket('ws://server-sse-ws.herokuapp.com'); // https://server-sse-ws.herokuapp.com/   ws://localhost:8080
       this.addEventListener();
     }
   }
