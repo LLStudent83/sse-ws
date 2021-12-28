@@ -1,7 +1,4 @@
 /* eslint-disable class-methods-use-this */
-import createRequest from '../http/createRequest';
-// eslint-disable-next-line import/no-cycle
-// import { ws } from '../../app';
 
 export default class Messenger {
   constructor(popUp, ws) {
@@ -13,17 +10,6 @@ export default class Messenger {
 
   async init() {
     this.popUp.renderingPopUpStart();
-    // this.ws.sendMessage(JSON.stringify({
-    //   action: 'getAllUsers',
-    // }));
-    // this.ws.sendMessage(JSON.stringify({
-    //   action: 'getAllMessage',
-    // }));
-    // this.activeUsers = sessionStorage.getItem('activeUsers'); // B
-    // this.login = sessionStorage.getItem('login');// B
-    // if (this.login) {
-    //   this.popUp.openMessenger(JSON.parse(this.activeUsers), JSON.parse(this.login));
-    // }
   }
 
   signIn(event) {

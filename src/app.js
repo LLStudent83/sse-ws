@@ -4,6 +4,7 @@
 import PopUp from './modules/pop_up/pop_up';
 // eslint-disable-next-line import/no-cycle
 import Messenger from './modules/messenger/messenger';
+// eslint-disable-next-line import/no-cycle
 import Ws from './modules/ws/ws';
 // eslint-disable-next-line import/no-cycle
 import AppState from './modules/appState/appState';

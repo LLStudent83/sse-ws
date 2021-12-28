@@ -16,6 +16,7 @@ export default class Ws {
   }
 
   addEventListener() {
+    // eslint-disable-next-line no-console
     this.ws.addEventListener('open', () => { console.log('WS соединенеие установлено'); });
     this.ws.addEventListener('message', (e) => {
       this.handlerMessage(e);
@@ -34,7 +35,6 @@ export default class Ws {
   }
 
   handlerMessage(e) {
-    console.log('Пришло сообщеиние', e);
     const { action, response } = JSON.parse(e.data);
     if (action === 'signIn' && this.login) {
       if (response.status === 'ok') {
@@ -54,13 +54,6 @@ export default class Ws {
   }
 
   // eslint-disable-next-line no-unused-vars
-  handlerCloseWS(e) {
-    // this.message = JSON.stringify({
-    //   action: 'deleteUser',
-    //   login: this.login,
-    // });
-    // this.sendMessage(this.message);
-  }
 
   handlerErrorWS(e) {
     // eslint-disable-next-line no-console
