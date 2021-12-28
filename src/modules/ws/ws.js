@@ -10,7 +10,7 @@ export default class Ws {
     this.appState = appState; // B
     this.pop_Up = pop_Up;
     if (!this.ws) {
-      this.ws = new WebSocket('wss://server-sse-ws.herokuapp.com'); // https://server-sse-ws.herokuapp.com/   ws://localhost:8080
+      this.ws = new WebSocket('ws://localhost:8080'); // https://server-sse-ws.herokuapp.com/   ws://localhost:8080
       this.addEventListener();
     }
   }
@@ -40,7 +40,6 @@ export default class Ws {
       if (response.status === 'ok') {
         this.pop_Up.closepopUp();
         this.pop_Up.openMessenger(response.activeUsers, this.login, response.allMessages);
-        // this.appState.saveStateActiveUsers(response.activeUsers, this.login); // B
       } else {
         document.querySelector('.form_inputNickName').value = '';
         // eslint-disable-next-line no-alert
